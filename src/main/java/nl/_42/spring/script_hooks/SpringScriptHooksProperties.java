@@ -5,19 +5,19 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "docker.postgres", ignoreUnknownFields = false)
 public class SpringScriptHooksProperties {
 
-    private boolean enabled;
+    private boolean enabled = false;
 
-    private String stdOutFilename;
+    private String stdOutFilename = "docker-std-out.log";
 
-    private String stdErrFilename;
+    private String stdErrFilename = "docker-std-err.log";
 
-    private String password;
+    private String password = "postgres";
 
-    private Integer port;
+    private Integer port = 5432;
 
-    private String imageName;
+    private String imageName = "postgres";
 
-    private String containerName;
+    private String containerName = "postgression";
 
     public boolean isEnabled() {
         return enabled;

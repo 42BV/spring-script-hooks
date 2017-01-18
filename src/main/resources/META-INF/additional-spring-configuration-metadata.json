@@ -3,7 +3,7 @@
     {
       "name": "docker.postgres.enabled",
       "type": "java.lang.Boolean",
-      "description": "Determines whether the Postgres Docker image is enabled."
+      "description": "Determines whether the Postgres Docker image is enabled. Default is false."
     },
     {
       "name": "docker.postgres.stdOutFilename",
