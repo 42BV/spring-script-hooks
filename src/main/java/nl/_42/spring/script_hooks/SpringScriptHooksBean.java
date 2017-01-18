@@ -22,12 +22,18 @@ public class SpringScriptHooksBean {
 
     @PostConstruct
     public void postConstruct() {
-        LOGGER.info(">>> Configuring Docker 42: " + properties.getImage());
+        LOGGER.info(">>> Configuring Docker Postgres");
+        LOGGER.info("| Image name: " + properties.getImageName());
+        LOGGER.info("| Container name: " + properties.getContainerName());
+        LOGGER.info("| Port: " + properties.getPort());
+        LOGGER.info("| Password: " + properties.getPassword());
+        LOGGER.info("| Std out: " + properties.getStdOutFilename());
+        LOGGER.info("| Std err: " + properties.getStdErrFilename());
     }
 
     @PreDestroy
     public void preDestroy() {
-        LOGGER.info(">>> Tearing down Docker 42: " + properties.getImage());
+        LOGGER.info(">>> Tearing down Docker 42");
     }
 
 }

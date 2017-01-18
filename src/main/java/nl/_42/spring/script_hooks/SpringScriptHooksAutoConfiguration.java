@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
 
-@ConditionalOnProperty(prefix = "spring.script", name = "enabled", matchIfMissing = false)
+@ConditionalOnProperty(prefix = "docker.postgres", name = "enabled", matchIfMissing = false)
 @AutoConfigureAfter({LiquibaseAutoConfiguration.class })
 @EnableConfigurationProperties(SpringScriptHooksProperties.class)
 public class SpringScriptHooksAutoConfiguration {

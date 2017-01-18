@@ -1,4 +1,39 @@
 {
   "properties": [
+    {
+      "name": "docker.postgres.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Determines whether the Postgres Docker image is enabled."
+    },
+    {
+      "name": "docker.postgres.stdOutFilename",
+      "type": "java.lang.String",
+      "description": "The file for the OS process to write its std output to. Default is 'docker-std-out.log'."
+    },
+    {
+      "name": "docker.postgres.stdErrFilename",
+      "type": "java.lang.String",
+      "description": "The file for the OS process to write its std output to. Default is 'docker-std-err.log'."
+    },
+    {
+      "name": "docker.postgres.password",
+      "type": "java.lang.String",
+      "description": "Postgres password to use. Default is 'postgres'."
+    },
+    {
+      "name": "docker.postgres.port",
+      "type": "java.lang.Integer",
+      "description": "Port for Postgres to run on. Default is '5432'."
+    },
+    {
+      "name": "docker.postgres.imageName",
+      "type": "java.lang.String",
+      "description": "Name of the Docker image to use. Default is 'postgres'."
+    },
+    {
+      "name": "docker.postgres.containerName",
+      "type": "java.lang.String",
+      "description": "Name for the container to launch under. Default is 'postgression'."
+    }
   ]
 }
