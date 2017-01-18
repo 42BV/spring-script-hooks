@@ -2,6 +2,9 @@ package nl._42.spring.script_hooks;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @ConfigurationProperties(prefix = "docker.postgres", ignoreUnknownFields = false)
 public class SpringScriptHooksProperties {
 
@@ -73,6 +76,17 @@ public class SpringScriptHooksProperties {
 
     public void setContainerName(String containerName) {
         this.containerName = containerName;
+    }
+
+    public Map<String, String> getProperties() {
+        Map<String,String> properties = new HashMap<>();
+        properties.put("stdOutFilename", getStdOutFilename());
+        properties.put("stdErrFilename", getStdErrFilename());
+        properties.put("password", getPassword());
+        properties.put("port", getPort().toString());
+        properties.put("containerName", getContainerName());
+        properties.put("imageName", getImageName());
+        return properties;
     }
 
 }
