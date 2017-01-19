@@ -18,9 +18,28 @@ public class ProcessRunner extends Thread {
 
     private final SpringScriptHooksProperties properties;
 
+    private final DockerTailer tailer;
+
     public ProcessRunner(SpringScriptHooksProperties properties) {
         super();
+
+        try {
+            cleanupFile(properties.getStdErrFilename());
+            cleanupFile(properties.getStdOutFilename());
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
         this.properties = properties;
+        this.tailer = new DockerTailer(
+                this,
+                properties.getStdOutFilename(),
+                properties.getStdErrFilename(),
+                "PostgreSQL init process complete; ready for start up.");
+    }
+
+    public boolean verify() throws IOException {
+        return tailer.verify();
     }
 
     private static String[] replacePlaceholders(Map<String, String> properties, String commandLine) {
@@ -41,14 +60,6 @@ public class ProcessRunner extends Thread {
     }
 
     public void run() {
-
-        try {
-            cleanupFile(properties.getStdErrFilename());
-            cleanupFile(properties.getStdOutFilename());
-        } catch (IOException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        }
 
         File output = new File(properties.getStdOutFilename());
         File errors = new File(properties.getStdErrFilename());

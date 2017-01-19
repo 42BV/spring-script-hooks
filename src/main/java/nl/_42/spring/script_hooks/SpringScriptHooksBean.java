@@ -1,6 +1,5 @@
 package nl._42.spring.script_hooks;
 
-import nl._42.spring.script_hooks.postgres.DockerTailer;
 import nl._42.spring.script_hooks.postgres.ProcessRunner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,15 +43,11 @@ public class SpringScriptHooksBean {
 
         processRunner = new ProcessRunner(properties);
         processRunner.start();
-        DockerTailer tailer = new DockerTailer(
-                processRunner,
-                properties.getStdOutFilename(),
-                properties.getStdErrFilename(),
-                "PostgreSQL init process complete; ready for start up.");
-        if (tailer.verify()) {
+        if (processRunner.verify()) {
             LOGGER.info("| Postgres container successfully started");
         } else {
             LOGGER.error("| Postgres failed to initialize");
+            // @TODO kill Spring container and stop doing anything at all
             return;
         }
         applicationContext.registerShutdownHook();
