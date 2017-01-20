@@ -13,15 +13,20 @@ public class DockerTailer {
     private final String dockerStandardOutFilename;
     private final String dockerStandardErrorFilename;
     private final String startupVerifiedText;
+    private final Integer timeout;
+
+    private Integer sleepTime = 0;
 
     public DockerTailer(Thread dockerThread,
                         String dockerStandardOutFilename,
                         String dockerStandardErrorFilename,
-                        String startupVerifiedText) {
+                        String startupVerifiedText,
+                        Integer timeout) {
         this.dockerThread = dockerThread;
         this.dockerStandardOutFilename = dockerStandardOutFilename;
         this.dockerStandardErrorFilename = dockerStandardErrorFilename;
         this.startupVerifiedText = startupVerifiedText;
+        this.timeout = timeout;
     }
 
     public boolean verify() throws IOException {
@@ -53,7 +58,14 @@ public class DockerTailer {
                 }
                 else {
                     try {
+                        if (sleepTime > timeout) {
+                            LOGGER.error("| = Startup could not be verified. Interrupting process. <check your verification string>");
+                            dockerThread.interrupt();
+                        }
+
+                        sleepTime += 100;
                         Thread.sleep( 100 );
+
                         if (!dockerThread.isAlive()) {
                             LOGGER.error("| = Docker Postgres container has stopped processing");
                             logErrorLinesAsError();

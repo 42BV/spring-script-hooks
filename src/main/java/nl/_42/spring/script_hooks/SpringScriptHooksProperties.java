@@ -24,6 +24,8 @@ public class SpringScriptHooksProperties {
 
     private String containerName = "postgression";
 
+    private Integer timeout = 300000; // 5 minutes because of time required for downloading?
+
     public boolean isEnabled() {
         return enabled;
     }
@@ -88,10 +90,19 @@ public class SpringScriptHooksProperties {
         this.imageVersion = imageVersion;
     }
 
+    public Integer getTimeout() {
+        return timeout;
+    }
+
+    public void setTimeout(Integer timeout) {
+        this.timeout = timeout;
+    }
+
     public Map<String, String> getProperties() {
         Map<String,String> properties = new HashMap<>();
         properties.put("stdOutFilename", getStdOutFilename());
         properties.put("stdErrFilename", getStdErrFilename());
+        properties.put("timeout", getTimeout().toString());
         properties.put("password", getPassword());
         properties.put("port", getPort().toString());
         properties.put("containerName", getContainerName());

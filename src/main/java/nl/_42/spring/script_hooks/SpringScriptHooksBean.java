@@ -35,6 +35,7 @@ public class SpringScriptHooksBean {
         LOGGER.info("| Docker Postgres Properties");
         LOGGER.info("| * Image name: " + properties.getImageName());
         LOGGER.info("| * Image version: " + properties.getImageVersion());
+        LOGGER.info("| * Timeout: " + properties.getTimeout());
         LOGGER.info("| * Container name: " + properties.getContainerName());
         LOGGER.info("| * Port: " + properties.getPort());
         LOGGER.info("| * Password: " + properties.getPassword());

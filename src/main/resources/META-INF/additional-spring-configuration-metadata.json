@@ -36,6 +36,11 @@
       "description": "Version of the Docker image to use. Default is 'latest'."
     },
     {
+      "name": "docker.postgres.timeout",
+      "type": "java.lang.Integer",
+      "description": "The duration in milliseconds which will be slept (ie, Thread.sleep) before the process is halted. Default is 300000 (ie, 5 minutes)"
+    },
+    {
       "name": "docker.postgres.containerName",
       "type": "java.lang.String",
       "description": "Name for the container to launch under. Default is 'postgression'."

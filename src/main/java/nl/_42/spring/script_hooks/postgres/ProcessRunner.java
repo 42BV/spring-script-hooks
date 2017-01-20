@@ -35,7 +35,8 @@ public class ProcessRunner extends Thread {
                 this,
                 properties.getStdOutFilename(),
                 properties.getStdErrFilename(),
-                "PostgreSQL init process complete; ready for start up.");
+                "PostgreSQL init process complete; ready for start up.",
+                properties.getTimeout());
     }
 
     public boolean verify() throws IOException {
