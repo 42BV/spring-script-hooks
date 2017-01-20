@@ -34,12 +34,12 @@ public class SpringScriptHooksBean {
         LOGGER.info(">>> Configuring Docker Postgres");
         LOGGER.info("| Docker Postgres Properties");
         LOGGER.info("| * Image name: " + properties.getImageName());
+        LOGGER.info("| * Image version: " + properties.getImageVersion());
         LOGGER.info("| * Container name: " + properties.getContainerName());
         LOGGER.info("| * Port: " + properties.getPort());
         LOGGER.info("| * Password: " + properties.getPassword());
         LOGGER.info("| * Std out: " + properties.getStdOutFilename());
         LOGGER.info("| * Std err: " + properties.getStdErrFilename());
-        LOGGER.info("| ApplicationContext: " + applicationContext);
 
         processRunner = new ProcessRunner(properties);
         processRunner.start();

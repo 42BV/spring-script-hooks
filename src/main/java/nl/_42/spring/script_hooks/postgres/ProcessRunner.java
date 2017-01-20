@@ -14,7 +14,7 @@ public class ProcessRunner extends Thread {
     private static final Logger LOGGER = LoggerFactory.getLogger(ProcessRunner.class);
 
     private final static String COMMAND =
-            "docker run --rm -e POSTGRES_PASSWORD=${password} -p 5432:${port} --name ${containerName} ${imageName}";
+            "docker run --rm -e POSTGRES_PASSWORD=${password} -p 5432:${port} --name ${containerName} ${imageName}:${imageVersion}";
 
     private final SpringScriptHooksProperties properties;
 

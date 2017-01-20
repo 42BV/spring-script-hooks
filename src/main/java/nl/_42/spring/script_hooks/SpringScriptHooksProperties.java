@@ -20,6 +20,8 @@ public class SpringScriptHooksProperties {
 
     private String imageName = "postgres";
 
+    private String imageVersion = "latest";
+
     private String containerName = "postgression";
 
     public boolean isEnabled() {
@@ -78,6 +80,14 @@ public class SpringScriptHooksProperties {
         this.containerName = containerName;
     }
 
+    public String getImageVersion() {
+        return imageVersion;
+    }
+
+    public void setImageVersion(String imageVersion) {
+        this.imageVersion = imageVersion;
+    }
+
     public Map<String, String> getProperties() {
         Map<String,String> properties = new HashMap<>();
         properties.put("stdOutFilename", getStdOutFilename());
@@ -86,6 +96,7 @@ public class SpringScriptHooksProperties {
         properties.put("port", getPort().toString());
         properties.put("containerName", getContainerName());
         properties.put("imageName", getImageName());
+        properties.put("imageVersion", getImageVersion());
         return properties;
     }
 
