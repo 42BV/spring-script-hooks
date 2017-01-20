@@ -24,6 +24,8 @@ public class SpringScriptHooksProperties {
 
     private String containerName = "postgression";
 
+    private String startupVerificationText = "PostgreSQL init process complete; ready for start up.";
+
     private Integer timeout = 300000; // 5 minutes because of time required for downloading?
 
     public boolean isEnabled() {
@@ -98,6 +100,14 @@ public class SpringScriptHooksProperties {
         this.timeout = timeout;
     }
 
+    public String getStartupVerificationText() {
+        return startupVerificationText;
+    }
+
+    public void setStartupVerificationText(String startupVerificationText) {
+        this.startupVerificationText = startupVerificationText;
+    }
+
     public Map<String, String> getProperties() {
         Map<String,String> properties = new HashMap<>();
         properties.put("stdOutFilename", getStdOutFilename());
@@ -108,6 +118,7 @@ public class SpringScriptHooksProperties {
         properties.put("containerName", getContainerName());
         properties.put("imageName", getImageName());
         properties.put("imageVersion", getImageVersion());
+        properties.put("startupVerificationText", getStartupVerificationText());
         return properties;
     }
 

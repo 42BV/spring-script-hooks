@@ -12,7 +12,7 @@ public class DockerTailer {
     private final Thread dockerThread;
     private final String dockerStandardOutFilename;
     private final String dockerStandardErrorFilename;
-    private final String startupVerifiedText;
+    private final String startupVerificationText;
     private final Integer timeout;
 
     private Integer sleepTime = 0;
@@ -20,12 +20,12 @@ public class DockerTailer {
     public DockerTailer(Thread dockerThread,
                         String dockerStandardOutFilename,
                         String dockerStandardErrorFilename,
-                        String startupVerifiedText,
+                        String startupVerificationText,
                         Integer timeout) {
         this.dockerThread = dockerThread;
         this.dockerStandardOutFilename = dockerStandardOutFilename;
         this.dockerStandardErrorFilename = dockerStandardErrorFilename;
-        this.startupVerifiedText = startupVerifiedText;
+        this.startupVerificationText = startupVerificationText;
         this.timeout = timeout;
     }
 
@@ -44,7 +44,7 @@ public class DockerTailer {
                 if( reader.available() > 0 ) {
                     char readChar = (char)reader.read();
                     if (readChar == '\n') {
-                        if (line.toString().contains(startupVerifiedText)) {
+                        if (line.toString().contains(startupVerificationText)) {
                             LOGGER.info("| > " + line.toString());
                             LOGGER.info("| = Docker startup verification text found");
                             logErrorLinesAsWarning();

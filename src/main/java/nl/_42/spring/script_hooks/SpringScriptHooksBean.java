@@ -39,6 +39,7 @@ public class SpringScriptHooksBean {
         LOGGER.info("| * Container name: " + properties.getContainerName());
         LOGGER.info("| * Port: " + properties.getPort());
         LOGGER.info("| * Password: " + properties.getPassword());
+        LOGGER.info("| * Startup Verification Text: [" + properties.getStartupVerificationText() + "]");
         LOGGER.info("| * Std out: " + properties.getStdOutFilename());
         LOGGER.info("| * Std err: " + properties.getStdErrFilename());
 
