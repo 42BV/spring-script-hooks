@@ -49,8 +49,7 @@ public class SpringScriptHooksBean {
             LOGGER.info("| Postgres container successfully started");
         } else {
             LOGGER.error("| Postgres failed to initialize");
-            // @TODO kill Spring container and stop doing anything at all
-            return;
+            throw new ExceptionInInitializerError("The Docker Container failed to properly initialize.");
         }
         applicationContext.registerShutdownHook();
     }
